@@ -3,8 +3,6 @@
 
 using namespace std;
 #include <vector>
-#include "classes.h"
-#include "functions.h"
 #include "map.h"
 #include "server.h"
 #include <stdlib.h>
@@ -86,8 +84,9 @@ void unitChange(std::string s) {
 	map[y][x].unit.type = s[1] - '0';
 	map[y][x].unit.HP = s[2] - '0';
 	map[y][x].unit.MP = s[3] - '0';
+	map[y][x].unit.gold = s[4] - '0';
 
-	unitChange(s.substr(4));
+	unitChange(s.substr(5));
 }
 void buildingChange(std::string s) {
 	if (s == "") {
@@ -121,6 +120,7 @@ std::string sendRow(int i, std::string r) {
 		s += '0' + t.unit.type;
 		s += '0' + t.unit.HP;
 		s += '0' + t.unit.MP;
+		s += '0' + t.unit.gold;
 	}
 	return s;
 }
@@ -180,6 +180,10 @@ void loadMap(std::vector<std::vector<Tile>>& map, std::string path) {
 void serverInit() {
 	//Set Up Server--------------------------------------
 	std::string input = "";
+	std::cout << "IP: ";
+	std::cin >> IP;
+	std::cout << "Port: ";
+	std::cin >> port;
 	std::cout << "Map Size: ";
 	std::cin >> input;
 	MAPSIZE = std::stoi(input);

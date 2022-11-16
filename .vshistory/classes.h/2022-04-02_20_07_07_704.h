@@ -38,6 +38,7 @@ struct Unit {
 
 	char HP = 100;
 	char MP = 0;
+	char gold = 0;
 
 };
 struct Tile {

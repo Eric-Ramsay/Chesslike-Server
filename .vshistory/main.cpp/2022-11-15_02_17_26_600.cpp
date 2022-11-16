@@ -180,6 +180,10 @@ void loadMap(std::vector<std::vector<Tile>>& map, std::string path) {
 void serverInit() {
 	//Set Up Server--------------------------------------
 	std::string input = "";
+	std::cout << "IP: ";
+	std::cin >> IP;
+	std::cout << "Port: ";
+	std::cin >> port;
 	std::cout << "Map Size: ";
 	std::cin >> input;
 	MAPSIZE = std::stoi(input);
