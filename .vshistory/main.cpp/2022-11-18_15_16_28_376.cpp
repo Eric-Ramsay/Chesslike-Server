@@ -197,7 +197,7 @@ void serverInit() {
 
 	//loadMap(map, "save.txt");
 	std::cout << std::endl << "Server started." 
-	<< std::endl << "IP: " << IP << std::endl
+	<< std::endl << "IP: " << IP << std::endl <<
 	<< "Port: " << port << std::endl;
 	server_join();
 

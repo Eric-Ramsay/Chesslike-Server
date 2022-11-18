@@ -196,8 +196,8 @@ void serverInit() {
 	map = createMap(seed);
 
 	//loadMap(map, "save.txt");
-	std::cout << std::endl << "Server started." 
-	<< std::endl << "IP: " << IP << std::endl
+	std::cout << std::endl << "Server started at " 
+	<< std::endl << "IP: " << IP 
 	<< "Port: " << port << std::endl;
 	server_join();
 
