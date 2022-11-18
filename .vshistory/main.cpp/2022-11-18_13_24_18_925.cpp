@@ -127,6 +127,7 @@ std::string sendRow(int i, std::string r) {
 	}
 	return s;
 }
+
 std::string sendSeed(int n, std::string r) {
 	return "s" + r + to_str(n);
 }

@@ -127,6 +127,7 @@ std::string sendRow(int i, std::string r) {
 	}
 	return s;
 }
+
 std::string sendSeed(int n, std::string r) {
 	return "s" + r + to_str(n);
 }
@@ -389,7 +390,6 @@ void server_send() {
 								players[j].last = messages + 1;
 								int byt = send(players[j].socket, s.c_str(), s.size() + 1, 0);
 								std::cout << "Sending a message: " << byt << std::endl;
-								//Check that everything worked in a little bit.
 								target = (timer + 5) % 500;
 							}
 						}

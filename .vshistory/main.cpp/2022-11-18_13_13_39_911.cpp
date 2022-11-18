@@ -1,10 +1,7 @@
 #define OLC_PGE_APPLICATION
 #define NOMINMAX
 
-//For some reason this fixes usage of max and min in map.h
 using namespace std;
-#include <vector>
-#include "classes.h"
 #include "functions.h"
 #include "map.h"
 #include "server.h"
@@ -127,6 +124,7 @@ std::string sendRow(int i, std::string r) {
 	}
 	return s;
 }
+
 std::string sendSeed(int n, std::string r) {
 	return "s" + r + to_str(n);
 }
@@ -162,7 +160,7 @@ std::vector<Tile> readRow(std::string in) {
 }
 
 void loadMap(std::vector<std::vector<Tile>>& map, std::string path) {
-	std::ifstream myfile;
+	ifstream myfile;
 	std::string line;
 	std::string num = "";
 	int i = 0;
@@ -182,26 +180,28 @@ void loadMap(std::vector<std::vector<Tile>>& map, std::string path) {
 void serverInit() {
 	//Set Up Server--------------------------------------
 	std::string input = "";
-
+	//std::cout << "IP: ";
+	//std::cin >> IP;
+	//std::cout << "Port: ";
+	//std::cin >> port;
 	std::cout << "Map Size: ";
 	std::cin >> input;
-
 	MAPSIZE = std::stoi(input);
-	MODI = std::max(.4, (MAPSIZE) / (1000.0));
 
+	//MAPSIZE = 30;
+	MODI = std::max(.4, (MAPSIZE) / (1000.0));
+	//std::cout << "Seed: ";
+	//std::cin >> input;
+	//seed = std::stoi(input);
 	srand(time(NULL));
 	seed = rand();
-
+	//seed = 4957;
 	std::cout << "Seed - " << seed << std::endl;
 	map = createMap(seed);
 
 	//loadMap(map, "save.txt");
-	std::cout << "Server started at " 
-	<< std::endl << "IP: " << IP 
-	<< "Port: " << port << std::endl;
-	server_join();
 
-	//Start the Server
+	server_join();
 	std::thread aList(server_listen);
 	std::thread bList(server_send);
 	aList.detach();
@@ -389,7 +389,6 @@ void server_send() {
 								players[j].last = messages + 1;
 								int byt = send(players[j].socket, s.c_str(), s.size() + 1, 0);
 								std::cout << "Sending a message: " << byt << std::endl;
-								//Check that everything worked in a little bit.
 								target = (timer + 5) % 500;
 							}
 						}
